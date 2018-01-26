@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+$roboto: 'Roboto', sans-serif; 
+$cabecalho_tab_color: #F7A600;
+
+html, body {
+	font-family: $roboto;
+  	font-weight: normal;
+  	background-color: black;
+  	padding: 0;
+   	margin: 0;
+   	border: 0;
+   	position: relative;
+   	height: 100%;
+}
+
+h1{
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.container {
+	width: 100vw;
+	height: 100%;
+	background: #6C7A89;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center
+}
+.box {
+	width: 530px;
+	height: 100%;
+	background-color: lighten($padrao, 85%);
+	padding: 30px 150px 30px 150px;
+}
+
+#divCentro{
+	background-color: lighten($padrao, 85%);
+	width: 530px;
+	margin: 0 auto;
+	padding: 30px 150px 130px 150px;
+	height: 100%; position: relative;
+}
+
+
+#poison{
+	width: 40px;
+	height: 40px;	
+}
+
+table#dados{
+	width: 100%;
+	border-spacing: 0px;
+}
+table#dados tr th {
+	font-size: 35px;
+	font-weight: bold;
+	height: 60px;
+	padding: 10px;
+	background-color: #F7a600;
+} 
+.right {
+	text-align: right;
+}
+.left {text-align: left !important;}
+table#dados tr td {
+	background: lighten(#646363, 10%);
+	padding: 25px 50px 5px 10px;
+	font-size: 25px;
+	color: #FFFFFF;
+} 
+table#dados tr.alter td {
+	background: lighten(#7c7b7b, 10%);
+}
+
+#kills{
+	margin:0 auto;
+}
+
+input[type=text]{   
+    background: transparent; 
+    border:2px solid #FFFFFF;
+    border-right: 0!important;
+    width:350px;
+    padding: 15px 0px 15px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+input[type=submit]{
+	background: lighten(#646363, 10%);
+    color:#F7a600;
+    border:2px solid lighten(#646363, 10%);;
+    width:165px;
+    padding: 15px 0px 15px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
