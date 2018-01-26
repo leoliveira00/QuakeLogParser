@@ -8,6 +8,8 @@ O problema proposto consiste em implementar um parser para o arquivo de log do j
 * Implemenar um ranking com os dados gravados conforme modelo proposto;
 * Gerar relatório conforme modelo proposto.
 
+Foi utilizado um compilador SASS gentilmente cedido aqui: https://github.com/ManualDeveloper/Compiler-SASS-To-PHP. O compilado será anexado ao código do projeto.
+
 A DLL e a DML do modelo do banco serão disponibilizados juntamente com os arquivos do projeto.
 
 Ao final, disponibilizarei, além dos arquivos, uma versão de demostração em um servidor próprio.
