@@ -10,7 +10,7 @@
         var $bd = "quakelogparser";
         var $query = "";
 	 	var $link = "";
-	 	var $retorno = "OK"; 	
+	 	var $retorno = ""; 	
 
 	 	/*
 	 	* Construtor efetua a conexão no banco

@@ -1,6 +1,6 @@
 <?php
 	include("conexao.class.php");
-	require_once("Compiler-SASS-To-PHP-master/scssphp/scss.inc.php");
+	require_once("scssphp/scss.inc.php");
 	use Leafo\ScssPhp\Compiler;
 	$compilar = new Compiler();
 	$arquivo = file_get_contents("css/estilo.scss");
@@ -21,6 +21,12 @@
 		?>
 
 	</style>
+
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script src="js/jquery-confirm.js"></script>
+	<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css">
+
+
 </head>
 <body>
 
@@ -38,53 +44,60 @@
 	   }
 	?>
 
-	<div class="container">
-		<div class="box">
-			<h1>UPLOAD LOG</h1>
 
-			<form action="#" method="POST" enctype="multipart/form-data">
-		      	<input type="file" name="fileUpload">
-		      	<input type="submit" value="Enviar">
-		   	</form>
 
-		   	<?php
-		   		/*
-		   		* Processa se recebeu o arquivo
-		   		*/
-		   		if(isset($_FILES['fileUpload'])){
+	<div class="divCentro">
 
-		   			/*
-		   			* Classe de manipulação de dados
-		   			*/
-		   			$sql = new CONEXAO();
+		<h1><div id="kills"><img id="poison" src="svg/poison.svg">&nbsp;QUAKE LOG PARSER</div></h1>
 
-					/*
-			      	* Leitura do arquivo
-			      	*/
-			      	$arquivo = fopen($dir.$new_log_game, "r");
-					$arrDados = array();					
-					
-					/*
-					* Transfere os dados que interessam do arquivo para um array (mantendo os caracteres especiais)
-					*/
-					while (!feof ($arquivo)) {
-						if ($linha = fgets($arquivo)){
-							if(strripos("[".$linha."]", "InitGame") || strripos("[".$linha."]", "ClientUserinfoChanged") || strripos("[".$linha."]", "killed")){
-								$arrDados[] = htmlspecialchars($linha);
-							}
+		<form action="#" method="POST" enctype="multipart/form-data">
+	      	</br>
+			<label class="uploadArq" for='select_arq'>Upload Arquivo &#187;</label></br></br>
+	      	<input id="select_arq" type="file" name="fileUpload" onChange="this.form.submit()">
+
+	      	<p class="botao"><a href="index.php">Ranking</a></p>
+	      	<p class="botao"><a href="#">Relatório de Kills</a></p>
+
+	   	</form>
+
+	   	<?php
+	   		/*
+	   		* Processa se recebeu o arquivo
+	   		*/
+	   		if(isset($_FILES['fileUpload'])){
+
+	   			/*
+	   			* Classe de manipulação de dados
+	   			*/
+	   			$sql = new CONEXAO();
+
+				/*
+		      	* Leitura do arquivo
+		      	*/
+		      	$arquivo = fopen($dir.$new_log_game, "r");
+				$arrDados = array();					
+				
+				/*
+				* Transfere os dados que interessam do arquivo para um array (mantendo os caracteres especiais)
+				*/
+				while (!feof ($arquivo)) {
+					if ($linha = fgets($arquivo)){
+						if(strripos("[".$linha."]", "InitGame") || strripos("[".$linha."]", "ClientUserinfoChanged") || strripos("[".$linha."]", "killed")){
+							$arrDados[] = htmlspecialchars($linha);
 						}
 					}
+				}
 
 
-					/*
-					* Pega as posições iniciais e finais de cada blogo de game do arquivo
-					*/
-					for($i=0; $i<count($arrDados); $i++){
-						if(strripos("[".$arrDados[$i]."]", "InitGame")){
-							$arrPosIni[] = $i;
-						}
+				/*
+				* Pega as posições iniciais e finais de cada blogo de game do arquivo
+				*/
+				for($i=0; $i<count($arrDados); $i++){
+					if(strripos("[".$arrDados[$i]."]", "InitGame")){
+						$arrPosIni[] = $i;
 					}
-					for($i=1; $i<=count($arrPosIni); $i++){
+				}
+				for($i=1; $i<=count($arrPosIni); $i++){
 						if($i == count($arrPosIni)){
 							$dif = count($arrDados);
 						}
@@ -234,17 +247,31 @@
 					unlink($dir.$new_log_game);
 
 					/*
-					* Envia mensagem e redireciona
+					* Envia mensagem
 					*/
-					if($sql->retorno == "OK"){						
-						$sql = null;						
-						echo '<script>alert("Arquivo processado com sucesso!");</script>';
-						echo "<script>window.location = 'index.php';</script>"; 
+					if(isset($sql->retorno) && $sql->retorno > 0){				
+						echo "<script type=\"text/javascript\">";
+						echo "$.alert({";
+						echo "        title: 'OK',";
+						echo "        content: 'Arquivo processado com sucesso.',";
+						echo "		theme: 'black',";
+						echo "		animation: 'zoom',";
+						echo "        confirm: function(){}";
+						echo "    });";
+						echo "</script>";
 					}
-					else{
-						$sql = null;
-						echo '<script>alert("Arquivo processado com sucesso!");</script>';
-					}
+					else{			
+						echo "<script type=\"text/javascript\">";
+						echo "$.alert({";
+						echo "        title: 'Atenção!',";
+						echo "        content: 'Falha ao carregar os dados. ".$sql->retorno."',";
+						echo "		theme: 'black',";
+						echo "		animation: 'zoom',";
+						echo "        confirm: function(){}";
+						echo "    });";
+						echo "</script>";
+					}					
+					$sql = null;			
 
 					/*
 					* Limpa a conexão
@@ -253,7 +280,6 @@
 				}//end if
 		   	?>
 
-		</div>
 	</div>
 
 </body>

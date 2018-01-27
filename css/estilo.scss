@@ -21,7 +21,7 @@ h1{
 .container {
 	width: 100vw;
 	height: 100%;
-	background: #6C7A89;
+	/*background: #6C7A89;*/
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -40,6 +40,19 @@ h1{
 	margin: 0 auto;
 	padding: 30px 150px 130px 150px;
 	height: 100%; position: relative;
+}
+
+.divCentro{
+	/*border: 1px solid #FF0000;*/
+	width:40%;
+    height:100%;
+    margin: 0 auto;
+    background-color: #CCC;
+    padding: 0px 50px 70px 50px;
+}
+
+h1{
+	padding: 50px 20px 20px 0px;
 }
 
 
@@ -81,7 +94,7 @@ input[type=text]{
     background: transparent; 
     border:2px solid #FFFFFF;
     border-right: 0!important;
-    width:350px;
+    width:330px;
     padding: 15px 0px 15px 10px;
     font-size: 20px;
     margin-bottom: 20px;
@@ -91,9 +104,51 @@ input[type=submit]{
 	background: lighten(#646363, 10%);
     color:#F7a600;
     border:2px solid lighten(#646363, 10%);;
-    width:165px;
+    width:180px;
     padding: 15px 0px 15px 10px;
     font-size: 20px;
     margin-bottom: 20px;
     cursor:pointer;
+}
+
+input[type=file]{
+	display: none;
+}
+
+.uploadArq {
+  	background: lighten(#646363, 10%);
+    color:#F7a600;
+    border:2px solid lighten(#646363, 10%);;
+    padding: 15px 40px 15px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+
+.uploadArq:hover{
+	background: lighten(#646363, 15%);
+} 
+.uploadArq:active{
+	background: lighten(#646363, 20%);
+} 
+
+.botao {
+	background: lighten(#646363, 10%);
+    border:2px solid lighten(#646363, 10%);;
+    width:170px;
+    padding: 15px 20px 15px 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+.botao a{
+	text-decoration: none;
+	color:#F7a600;
+}
+.botao:hover{
+	background: lighten(#646363, 15%);
+}
+.botao:active{
+
+	background: lighten(#646363, 20%);
 }

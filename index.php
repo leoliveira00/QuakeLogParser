@@ -1,6 +1,6 @@
 <?php
 	include("conexao.class.php");
-	require_once("Compiler-SASS-To-PHP-master/scssphp/scss.inc.php");	
+	require_once("scssphp/scss.inc.php");	
 	
 	/*
 	* Instancia compilador SASS
@@ -22,14 +22,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Teste</title>
-	<style type="text/css">
-		
+	<title>Teste</title>	
+
+	<style type="text/css">		
 		<?php
 			echo $estilo;
 		?>
-
 	</style>
+	
+	/*
+	* JQuery
+	*/
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script src="js/jquery-confirm.js"></script>
+	<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css">
+	
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    //
+
+		});
+	</script>
+
 </head>
 <body>
 
@@ -38,7 +53,7 @@
 
 		<form name="formBusca" method="POST">
             <p>
-            	<input type="text" id="nome" placeholder="Busca por Nome" name="nome" /><input type="submit" value="Buscar">
+            	<input type="text" placeholder="Busca por Nome" name="nome" /><input type="submit" value="Buscar">
             </p>
         </form>
 		
@@ -67,19 +82,34 @@
         		/*
         		* Exibe os dados requisitados
         		*/
-        		for($i=0; $i<count($sql->retorno); $i++){
-        			if($i%2 == 0){
-					     echo "<tr class='alter'>";
-					     echo "	<td>".$sql->retorno[$i]['Nick_Name']."</td>";
-					     echo "	<td class='right'>".$sql->retorno[$i]['Ranking']."</td>";
-					     echo "</tr>";
-					} else {
-					     echo "<tr>";
-					     echo "	<td>".$sql->retorno[$i]['Nick_Name']."</td>";
-					     echo "	<td class='right'>".$sql->retorno[$i]['Ranking']."</td>";
-					     echo "</tr>";
-					}
+        		
+        		if(count($sql->retorno)>0){
+        			for($i=0; $i<count($sql->retorno); $i++){
+	        			if($i%2 == 0){
+						     echo "<tr class='alter'>";
+						     echo "	<td>".$sql->retorno[$i]['Nick_Name']."</td>";
+						     echo "	<td class='right'>".$sql->retorno[$i]['Ranking']."</td>";
+						     echo "</tr>";
+						} else {
+						     echo "<tr>";
+						     echo "	<td>".$sql->retorno[$i]['Nick_Name']."</td>";
+						     echo "	<td class='right'>".$sql->retorno[$i]['Ranking']."</td>";
+						     echo "</tr>";
+						}
+	        		}
         		}
+        		else{
+        			echo "<script type=\"text/javascript\">";
+					echo "$.alert({";
+					echo "        title: 'Atenção!',";
+					echo "        content: 'Nenhum registro encontrado.',";
+					echo "		theme: 'black',";
+					echo "		animation: 'zoom',";
+					echo "        confirm: function(){}";
+					echo "    });";
+					echo "</script>";
+        		}
+        		
 
         		/*
         		* Limpa a conexão
