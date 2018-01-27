@@ -13,7 +13,7 @@
 	 	var $retorno = ""; 	
 
 	 	/*
-	 	* Construtor efetua a conexão no banco
+	 	* Efetua a conexão no banco
 	 	*/
 	 	function CONEXAO(){
 			$this->Connect();

@@ -26,12 +26,36 @@
 	<script src="js/jquery-confirm.js"></script>
 	<link href="css/jquery-confirm.css" rel="stylesheet" type="text/css">
 
+	<script type="text/javascript">
+		$(document).ready(function(){
+		   $('.divCarregando').fadeOut('fast');
+		});
+
+
+		function carregar(){
+			$('.divCarregando').fadeIn('fast');
+		    document.getElementById("frm_upld").submit();
+		}
+
+		function clickLink(param_link){
+			switch(param_link){
+				case "link_ranking":
+					$(location).attr('href', 'index.php');
+					break;
+				case "link_relatorio":
+					$(location).attr('href', 'abre_rel.php');
+					break;
+			}
+		    
+		}	
+
+	</script>
 
 </head>
 <body>
-
+<div class="divCarregando"><img id="imgCarregando" src="http://goo.gl/prjII7" width="150" height="70" /></div>
 	<?php
-		if(isset($_FILES['fileUpload'])){
+		if(isset($_FILES['fileUpload'])){		
 
 			/*
 			* Upload do arquivo temporário
@@ -44,19 +68,18 @@
 	   }
 	?>
 
-
-
 	<div class="divCentro">
 
 		<h1><div id="kills"><img id="poison" src="svg/poison.svg">&nbsp;QUAKE LOG PARSER</div></h1>
 
-		<form action="#" method="POST" enctype="multipart/form-data">
+		<form id="frm_upld" action="#" method="POST" enctype="multipart/form-data" onsubmit="return submitForm()">
 	      	</br>
 			<label class="uploadArq" for='select_arq'>Upload Arquivo &#187;</label></br></br>
-	      	<input id="select_arq" type="file" name="fileUpload" onChange="this.form.submit()">
+			<input id="select_arq" type="file" name="fileUpload" onChange="carregar()">
 
-	      	<p class="botao"><a href="index.php">Ranking</a></p>
-	      	<p class="botao"><a href="#">Relatório de Kills</a></p>
+	      	<p class="botao" onclick="clickLink('link_ranking');"><a href="index.php">Ranking</a></p>
+
+	      	<p class="botao" onclick="clickLink('link_relatorio');"><a href="abre_rel.php">Relatório de Kills</a></p>
 
 	   	</form>
 
@@ -249,27 +272,34 @@
 					/*
 					* Envia mensagem
 					*/
-					if(isset($sql->retorno) && $sql->retorno > 0){				
-						echo "<script type=\"text/javascript\">";
-						echo "$.alert({";
-						echo "        title: 'OK',";
-						echo "        content: 'Arquivo processado com sucesso.',";
-						echo "		theme: 'black',";
-						echo "		animation: 'zoom',";
-						echo "        confirm: function(){}";
-						echo "    });";
-						echo "</script>";
+					if(isset($sql->retorno) && $sql->retorno > 0){
+						echo "<script type=\"text/javascript\"> 
+						    $.confirm({
+							    title: 'Concluído',
+							    content: 'Arquivo processado com sucesso! Deseja ver o Ranking agora?',
+								theme: 'black',
+								animation: 'zoom',
+							    buttons: {
+							        'Sim, por favor': function () {
+							        	$(location).attr('href', 'index.php');
+							        },
+							        'Não, obrigado': function () {
+							        	$(location).attr('href', 'upload.php');			            
+							        }
+							    }
+							});
+						</script>";
 					}
-					else{			
-						echo "<script type=\"text/javascript\">";
-						echo "$.alert({";
-						echo "        title: 'Atenção!',";
-						echo "        content: 'Falha ao carregar os dados. ".$sql->retorno."',";
-						echo "		theme: 'black',";
-						echo "		animation: 'zoom',";
-						echo "        confirm: function(){}";
-						echo "    });";
-						echo "</script>";
+					else{
+						echo "<script type=\"text/javascript\"> 
+						    $.alert({
+								title: 'Atenção!',
+						        content: 'Falha no carregamento do arquivo.',
+								theme: 'black',
+								animation: 'zoom',
+						        confirm: function(){}
+						    });
+						</script>";
 					}					
 					$sql = null;			
 

@@ -1,0 +1,32 @@
+table, tr, td, th, h2{
+   font-family: Arial;
+   border: 0;
+}
+
+h2{
+	font-size: 20px;
+}
+
+.tbl_header, .tbl_footer{
+	font-size: 15px;
+}
+ 
+.zebra{
+	background: #e6e6e6;
+}
+
+.destaque{
+	color: red;
+	font-weight: bold;
+}
+.rowGame{
+	background: #e6e6e6;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.tbl_itens{
+
+	font-size: 12px;
+}
