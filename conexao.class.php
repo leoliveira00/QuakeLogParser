@@ -53,14 +53,14 @@
 		function GetDadosGrid($nome=null){
 			$sql = "SELECT player.Nick_Name
 					      ,SUM(player.Player_Kills) AS Ranking
-					  FROM player ";
+					  FROM players ";
 
 			if($nome!=""){
-				$sql .= "WHERE player.Nick_Name = '".$nome."' ";
+				$sql .= "WHERE players.Nick_Name = '".$nome."' ";
 			}
 
-			$sql .= "GROUP BY player.Nick_Name
-					ORDER BY Ranking DESC, player.Nick_Name";
+			$sql .= "GROUP BY players.Nick_Name
+					ORDER BY Ranking DESC, players.Nick_Name";
 
 					//echo $sql; die;
 

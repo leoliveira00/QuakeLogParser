@@ -178,7 +178,7 @@
 						/*
 						* Grava as partidas
 						*/
-						$sql->Insert("game","Game_Name, Tot_Kills","'"."game_".($j+1)."','".$totalKills."'");
+						$sql->Insert("games","Game_Name, Tot_Kills","'"."game_".($j+1)."','".$totalKills."'");
 						$gameId = $sql->retorno;
 
 
@@ -186,7 +186,7 @@
 						* Grava os Players
 						*/
 						for($i=0; $i<count($matrizPlayers); $i++){
-							$sql->Insert("player","Nick_Name, Game_Id, Player_Kills","'".$matrizPlayers[$i][0]."','".$gameId."','".$matrizPlayers[$i][1]."'");								
+							$sql->Insert("players","Nick_Name, Game_Id, Player_Kills","'".$matrizPlayers[$i][0]."','".$gameId."','".$matrizPlayers[$i][1]."'");								
 							$playerId = $sql->retorno;
 						}
 
