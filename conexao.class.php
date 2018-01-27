@@ -51,8 +51,8 @@
 		* Função para buscar os dados do ranking
 		*/
 		function GetDadosGrid($nome=null){
-			$sql = "SELECT player.Nick_Name
-					      ,SUM(player.Player_Kills) AS Ranking
+			$sql = "SELECT players.Nick_Name
+					      ,SUM(players.Player_Kills) AS Ranking
 					  FROM players ";
 
 			if($nome!=""){
@@ -61,8 +61,6 @@
 
 			$sql .= "GROUP BY players.Nick_Name
 					ORDER BY Ranking DESC, players.Nick_Name";
-
-					//echo $sql; die;
 
 			$query = $this->link->query($sql);
 			$this->retorno = $query->fetchAll(PDO::FETCH_ASSOC);
