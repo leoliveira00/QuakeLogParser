@@ -7,7 +7,7 @@
         private $pdo  = null;  
         private $pdf  = null;
         private $css  = null;  
-        private $titulo = null; 
+        private $titulo = null;
      
         /*  
         * Construtor  
@@ -28,15 +28,13 @@
             if (file_exists($file)){
                 $this->css = file_get_contents($file);
             }
-            else{
-                echo 'Arquivo css inexistente!';
-            }  
         }
      
         /*  
         * Monta o cabeçalho
         */  
-        protected function getHeader(){  
+        protected function getHeader(){ 
+            date_default_timezone_set("Brazil/East"); 
             $data = date('j/m/Y H:i:s');  
             $retorno = "
                 <table class='tbl_header' width='1000'>  
@@ -67,12 +65,7 @@
         */  
         private function getTabela(){  
             $color  = false;  
-            $retorno = "";  
-     
-            $retorno .= "<h2 style='text-align:center'>".$this->titulo."</h2>";  
-            
-            $retorno .= "<table style='width: 100%'>";
-
+            $retorno = ""; 
 
             $sqlGames = "SELECT G.Game_Id
                                ,G.Game_Name
@@ -83,10 +76,11 @@
             $dadosGames = $queryGames->fetchAll(PDO::FETCH_ASSOC);
 
             if(count($dadosGames)>0){
-
-                //echo count($dadosGames)."<pre>"; print_r($dadosGames); echo "</pre>"; die;
+     
+                $retorno .= "<h2 style='text-align:center'>".$this->titulo."</h2>";                 
+                $retorno .= "<table style='width: 100%'>";
                 
-                for($i=0; $i<count($dadosGames); $i++){ //echo count($dadosGames)."<pre>"; print_r($dadosGames[$i]); echo "</pre>"; die;
+                for($i=0; $i<count($dadosGames); $i++){
 
                     $retorno .= "<tr>";
                     $retorno .= "    <td colspan='2' class='rowGame'>".$dadosGames[$i]['Game_Name']." - Total Kills: ".$dadosGames[$i]['Tot_Kills']."</td>";
@@ -104,8 +98,7 @@
                                        ,KILLS K
                                   WHERE K.Game_id = G.Game_Id
                                     AND G.Game_Id = ".$dadosGames[$i]['Game_Id']."
-                                 GROUP BY K.Causa_Mortis;
-                                 ";
+                                 GROUP BY K.Causa_Mortis;";
                     $queryKills = $this->pdo->link->query($sqlKills);            
                     $dadosKills = $queryKills->fetchAll(PDO::FETCH_ASSOC);
 
@@ -123,12 +116,10 @@
                     $retorno .= "    </td>";
                     $retorno .= "</tr>";
                 }
-            }
-            else{
-                echo "Nenhum registro encontrado.";
-            }
 
-            $retorno .= "</table>";
+                $retorno .= "</table>";
+
+            }
             return $retorno;  
         } 
      
@@ -136,11 +127,11 @@
         * Gera o PDF  
         */  
         public function BuildPDF(){  
-            $this->pdf = new mPDF('utf-8', 'A4-P');  
+            $this->pdf = new mPDF('utf-8', 'A4-P'); 
             $this->pdf->WriteHTML($this->css, 1);  
             $this->pdf->SetHTMLHeader($this->getHeader());  
-            $this->pdf->SetHTMLFooter($this->getFooter());  
-            $this->pdf->WriteHTML($this->getTabela());   
+            $this->pdf->SetHTMLFooter($this->getFooter()); 
+            $this->pdf->WriteHTML($this->getTabela());             
         }   
      
         /*   

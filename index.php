@@ -41,7 +41,6 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		    //
-
 		});
 	</script>
 
@@ -101,7 +100,7 @@
         		else{
         			echo "<script type=\"text/javascript\">";
 					echo "$.alert({";
-					echo "        title: 'Atenção!',";
+					echo "        title: '',";
 					echo "        content: 'Nenhum registro encontrado.',";
 					echo "		theme: 'black',";
 					echo "		animation: 'zoom',";

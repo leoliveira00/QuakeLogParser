@@ -43,7 +43,8 @@
 					$(location).attr('href', 'index.php');
 					break;
 				case "link_relatorio":
-					$(location).attr('href', 'abre_rel.php');
+					//$(location).attr('href', 'abre_rel.php');
+					window.open('abre_rel.php', '_blank');
 					break;
 			}
 		    
@@ -79,7 +80,7 @@
 
 	      	<p class="botao" onclick="clickLink('link_ranking');"><a href="index.php">Ranking</a></p>
 
-	      	<p class="botao" onclick="clickLink('link_relatorio');"><a href="abre_rel.php">Relatório de Kills</a></p>
+	      	<p class="botao" onclick="clickLink('link_relatorio');"><a>Relatório de Kills</a></p>
 
 	   	</form>
 
