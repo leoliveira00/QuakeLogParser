@@ -20,7 +20,7 @@ Recursos Utilizados:
 * A biblioteca MPDF versão 6.0 foi usada para geração do relatório (https://mpdf.github.io).
 
 
-Todos os arquivos, inclusive bibliotecas, serão anexados ao projeto juntamente com a DLL e a DML do banco de dados.
+Todos os arquivos, inclusive bibliotecas, serão anexados ao projeto. O arquivo para a criação do banco está na pasta "sql".
 
 
-Para ver a versão de demonstração acesse: http://arteonze.com.br/quakelogparser/
+Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelogparser/
