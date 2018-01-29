@@ -4,8 +4,8 @@
 		/*
 		* Dados da conexão
 		*/
-		var $usr = "root";
-        var $pss = "";
+		var $usr = "root";//colocar o usuário do bd aqui
+        var $pss = "";//colocar a senha do bd aqui
         var $host = "localhost";
         var $bd = "quakelogparser";
         var $query = "";
@@ -33,6 +33,9 @@
 
 		/*
 		* Função para inserir os dados nas tabelas
+		* @tabela - tabela no banco de dados
+		* @campos - campos nos quais serão inseridos os valores
+		* @valores - valores a serem inseridos nos campos
 		*/
 		function Insert($tabela,$campos,$valores){
 			try{
@@ -49,14 +52,15 @@
 
 		/*
 		* Função para buscar os dados do ranking
+		* @nomeBusca - o nome do player para efetuar a busca
 		*/
-		function GetDadosGrid($nome=null){
+		function GetDadosGrid($nomeBusca=null){
 			$sql = "SELECT players.Nick_Name
 					      ,SUM(players.Player_Kills) AS Ranking
 					  FROM players ";
 
-			if($nome!=""){
-				$sql .= "WHERE players.Nick_Name = '".$nome."' ";
+			if($nomeBusca!=""){
+				$sql .= "WHERE players.Nick_Name LIKE '%".$nomeBusca."%' ";
 			}
 
 			$sql .= "GROUP BY players.Nick_Name
