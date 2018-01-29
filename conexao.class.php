@@ -4,10 +4,12 @@
 		/*
 		* Dados da conexão
 		*/
-		var $usr = "root";//colocar o usuário do bd aqui
+		
+		var $usr = "root";//colocar usuário do bd
         var $pss = "";//colocar a senha do bd aqui
-        var $host = "localhost";
-        var $bd = "quakelogparser";
+        var $host = "localhost";//colocar o host do bd aqui
+        var $bd = "quakelogparser";//colocar o nome do bd aqui
+
         var $query = "";
 	 	var $link = "";
 	 	var $retorno = ""; 	
@@ -21,10 +23,12 @@
 
   		function Connect(){
   			try{
+
 				$this->link = new PDO('mysql:host='.$this->host.';dbname='.$this->bd,$this->usr, $this->pss);
 
 				$this->link->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 				$this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
   			}
   			catch(PDOException $e){
   				$this->retorno = "Error line #21!: " . $e->getMessage() . "<br/>";
@@ -51,7 +55,7 @@
 		}
 
 		/*
-		* Função para buscar os dados do ranking
+		* Função específica para buscar os dados do ranking
 		* @nomeBusca - o nome do player para efetuar a busca
 		*/
 		function GetDadosGrid($nomeBusca=null){

@@ -61,7 +61,7 @@
         }  
      
         /*   
-        * Monta a tabela com todos os dados  
+        * Monta a tabela com os dados  
         */  
         private function getTabela(){  
             $color  = false;  
@@ -136,7 +136,7 @@
      
         /*   
         * Exibe o PDF  
-        * @param $name - Nome do arquivo se necessário grava-lo  
+        * @param $name - Nome do arquivo se necessário gravá-lo  
         */  
         public function Exibir($name = null) {  
             $this->pdf->Output($name, 'I');  

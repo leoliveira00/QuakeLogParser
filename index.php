@@ -1,6 +1,9 @@
 <?php
 	include("conexao.class.php");
-	require_once("scssphp/scss.inc.php");	
+	require_once("scssphp/scss.inc.php");
+
+	//error_reporting(E_WARNING);
+	//error_reporting(E_NOTICE);
 	
 	/*
 	* Compilador SASS
@@ -8,24 +11,26 @@
 	use Leafo\ScssPhp\Compiler;
 	$compilar = new Compiler();
 	$arquivo = file_get_contents("css/estilo.scss");
+	
 	//exemplo de uso
 	$arquivo = str_replace('$padrao', '#000000', $arquivo);
 	$arquivo = str_replace('$bgColor', '#000000', $arquivo);
+
 	//compila o css
 	$estilo = $compilar->compile($arquivo);
-
-	error_reporting(E_WARNING);
-	error_reporting(E_NOTICE);
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Quale Log Parser - Leonardo Oliveira</title>	
+	<title>Quake Log Parser - Leonardo Oliveira</title>	
 
 	<style type="text/css">		
 		<?php
+			/*
+			* Executa a inserção do estilo compilado
+			*/
 			echo $estilo;
 		?>
 	</style>

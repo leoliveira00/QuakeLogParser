@@ -1,6 +1,4 @@
-<style type="text/css">
-	html{background-color: #000000;}	
-</style>
+<style type="text/css">html{background-color: #000000;}	</style>
 <?php
 
 	include("conexao.class.php");
@@ -13,30 +11,31 @@
 		/*
 		* Efetua o upload do arquivo temporário
 		*/
-		date_default_timezone_set("Brazil/East"); //Define timezone padrão
+		date_default_timezone_set("Brazil/East"); //Timezone padrão
 	  	$ext = strtolower(substr($_FILES['fileUpload']['name'],-4)); //Extensão do arquivo
 	  	$new_log_game = "games_" . date("Y.m.d-H.i.s") . $ext; //Define um novo nome para o arquivo temporário
 	  	$dir = 'arq/'; //Diretório para uploads
-	  	move_uploaded_file($_FILES['fileUpload']['tmp_name'], $dir.$new_log_game);
+	  	move_uploaded_file($_FILES['fileUpload']['tmp_name'], $dir.$new_log_game);//sobe o arquivo
 
-		/*
-		* Classe de manipulação de dados
-		*/
+
+	  	//conecta
 		$sql = new CONEXAO();
 
+
 		/*
-	  	* Leitura do arquivo temporário
+	  	* Lê o arquivo temporário
 	  	*/
 	  	$arquivo = fopen($dir.$new_log_game, "r");
 		$arrDados = array();					
+
 		
 		/*
-		* Transfere os dados que interessam do arquivo para um array (mantendo os caracteres especiais)
+		* Transfere os dados que interessam do arquivo para um array
 		*/
 		while (!feof ($arquivo)) {
 			if ($linha = fgets($arquivo)){
 				if(strripos("[".$linha."]", "InitGame") || strripos("[".$linha."]", "ClientUserinfoChanged") || strripos("[".$linha."]", "killed")){
-					$arrDados[] = htmlspecialchars($linha);
+					$arrDados[] = htmlspecialchars($linha);//mantém caracteres especiais
 				}
 			}
 		}
@@ -60,15 +59,18 @@
 			$arrPosFim[] = $dif;
 		}
 
+
 		/*
 		* Recupera os dados das partidas
 		*/
 		for($j=0; $j < count($arrPosIni); $j++){
+
 			
 			/*
 			* Fatia os dados por jogo com base nas posições iniciais e finais de cada um
 			*/
-			$partida = array_slice($arrDados, $arrPosIni[$j], $arrPosFim[$j]);		
+			$partida = array_slice($arrDados, $arrPosIni[$j], $arrPosFim[$j]);	
+
 
 			/*
 			* Monta vetor com os Players
@@ -92,10 +94,12 @@
 				}	
 			}
 
+
 			/*
 			* Elimina valores nulos
 			*/
 			$playerName = array_values(array_filter($playerName));
+
 
 			/*
 			* Converte o vetor em matriz (palyerName, totKills)
@@ -156,6 +160,7 @@
 				$playerId = $sql->retorno;
 			}
 
+
 			/*
 			* Monta uma string com os kills que cada usuário sofreu e a causa da morte
 			*/
@@ -176,6 +181,7 @@
 				}
 			}
 
+
 			/*
 			* Grava os kills
 			*/
@@ -187,6 +193,7 @@
 					$sql->Insert("kills","Game_Id, Nick_Name, Causa_Mortis","'".$gameId."','".$kills[0]."','".$kills[1]."'");
 				}
 			}
+
 		}
 		
 		/*
@@ -199,10 +206,17 @@
 		*/
 		unlink($dir.$new_log_game);
 
+		/*
+		* Desfaz a conexção
+		*/
 		$sql = null;			
 
 	}//end if
 
+
+	/*
+	* Retorna para o index
+	*/
 	echo "<script type=\"text/javascript\">
 			window.location.href='index.php';
 		 </script>";
