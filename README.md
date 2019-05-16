@@ -48,6 +48,6 @@ Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelo
 <li>No php.ini procure por "max_execution_time" e substitua o valor por 60. Com isso voc&ecirc; estar&aacute; mudando o tempo m&aacute;ximo de execu&ccedil;&atilde;o da requisi&ccedil;&atilde;o para um minuto para que d&ecirc; tempo de subir o arquivo, ler e gravar e depois deletar o arquivo.</li>
 </ul>
 </li>
-<li>Execute o localhost: http://localhost:{sua_porta}/QuakeLogParser-master/. Ao executar voc&ecirc; ver&aacute; a seguinte mensagem: "Nenhum registro encontrado".</li>
+<li>Execute o localhost: http://localhost:{sua_porta}/QuakeLogParser/. Ao executar voc&ecirc; ver&aacute; a seguinte mensagem: "Nenhum registro encontrado".</li>
 <li>Por &uacute;ltimo, &eacute; s&oacute; subir o log que est&aacute; em htdocs\QuakeLogParser-master\arq\games.log. Ser&aacute; exibido um ranking dos jogadores e disponibilizado a impress&atilde;o do relat&oacute;rio de kills.</li>
 </ol>
