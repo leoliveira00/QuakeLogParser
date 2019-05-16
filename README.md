@@ -25,6 +25,8 @@ Todos os arquivos, inclusive bibliotecas, serão anexados ao projeto. O arquivo 
 
 Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelogparser/
 
+##INSTRUÇÕES
+
 Para executar no localhost basta criar a base de dados. Para tanto, execute no MySQL o script em sql/quakelogparser_basic.sql. 
 
 Depois configure as variáveis de conexão em conexao.class.php:
