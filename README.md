@@ -49,5 +49,5 @@ Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelo
 </ul>
 </li>
 <li>Execute o localhost: http://localhost:{sua_porta}/QuakeLogParser/. Ao executar voc&ecirc; ver&aacute; a seguinte mensagem: "Nenhum registro encontrado".</li>
-<li>Por &uacute;ltimo, &eacute; s&oacute; subir o log que est&aacute; em htdocs\QuakeLogParser-master\arq\games.log. Ser&aacute; exibido um ranking dos jogadores e disponibilizado a impress&atilde;o do relat&oacute;rio de kills.</li>
+<li>Por &uacute;ltimo, &eacute; s&oacute; subir o log que est&aacute; em htdocs\QuakeLogParser\arq\games.log. Ser&aacute; exibido um ranking dos jogadores e disponibilizado a impress&atilde;o do relat&oacute;rio de kills.</li>
 </ol>
