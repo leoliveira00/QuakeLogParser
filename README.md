@@ -28,18 +28,26 @@ Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelo
 <h2>INSTRUÇÕES</h2>
 
 <ol>
-  <li>Instale o composer: https://getcomposer.org/</li>
-  <li>Instale o mpdf para o relatório:
-  <ul><li>Na pasta raiz do projeto execute: $ composer require mpdf/mpdf</li></ul</li>  
-  <li>Enquanto o mpdf é instalado, crie a base de dados executando no MySQL o script que está em sql/quakelogparser_basic.sql. </li>
-  <li>Depois configure as variáveis de conexão em conexao.class.php:
-    <ul>
-      <li>var $usr = "root";//colocar usuário do bd</li>
-      <li>var $pss = "";//colocar a senha do bd aqui</li>
-      <li>var $host = "localhost";//colocar o host do bd aqui</li>
-      <li>var $bd = "quakelogparser";//colocar o nome do bd aqui</li></li>
-    </ul> 
-    <li>Aumente o tempo de execução no servidor para evitar o "Maximum execution time exceeded". No php.ini procure por "max_execution_time" e substitua o valor por 60. Com isso você estará mudando o tempo máximo de execução da requisição para um minuto para que dê tempo de subir o arquivo, ler e gravar e depois deletar o arquivo.</li>
-    <li>Execute o localhost: http://localhost:{sua_porta}/QuakeLogParser-master/. Ao executar você verá a seguinte mensagem: "Nenhum registro encontrado".</li>
-    <li>Por último, é só subir o log que está em htdocs\QuakeLogParser-master\arq\games.log. Será exibido um ranking dos jogadores e disponibilizado a impressão do relatório de kills.</li>
+<li>Instale o composer:&nbsp;<a href="https://getcomposer.org/" rel="nofollow">https://getcomposer.org/</a></li>
+<li>Instale o mpdf para o relat&oacute;rio:
+<ul>
+<li>Na pasta raiz do projeto execute: $ composer require mpdf/mpdf</li>
+</ul>
+</li>
+<li>Enquanto o mpdf &eacute; instalado, crie a base de dados executando no MySQL o script que est&aacute; em sql/quakelogparser_basic.sql.</li>
+<li>Configure as vari&aacute;veis de conex&atilde;o em conexao.class.php:
+<ul>
+<li>var $usr = "root";//colocar usu&aacute;rio do bd</li>
+<li>var $pss = "";//colocar a senha do bd aqui</li>
+<li>var $host = "localhost";//colocar o host do bd aqui</li>
+<li>var $bd = "quakelogparser";//colocar o nome do bd aqui</li>
+</ul>
+</li>
+<li>Aumente o tempo de execu&ccedil;&atilde;o no servidor para evitar o "Maximum execution time exceeded":
+<ul>
+<li>No php.ini procure por "max_execution_time" e substitua o valor por 60. Com isso voc&ecirc; estar&aacute; mudando o tempo m&aacute;ximo de execu&ccedil;&atilde;o da requisi&ccedil;&atilde;o para um minuto para que d&ecirc; tempo de subir o arquivo, ler e gravar e depois deletar o arquivo.</li>
+</ul>
+</li>
+<li>Execute o localhost: http://localhost:{sua_porta}/QuakeLogParser-master/. Ao executar voc&ecirc; ver&aacute; a seguinte mensagem: "Nenhum registro encontrado".</li>
+<li>Por &uacute;ltimo, &eacute; s&oacute; subir o log que est&aacute; em htdocs\QuakeLogParser-master\arq\games.log. Ser&aacute; exibido um ranking dos jogadores e disponibilizado a impress&atilde;o do relat&oacute;rio de kills.</li>
 </ol>
