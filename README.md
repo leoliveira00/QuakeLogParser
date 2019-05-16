@@ -29,7 +29,7 @@ Para ver a versão final em funcionamento acesse: http://arteonze.com.br/quakelo
 
 <ol>
 <li>Instale o composer:&nbsp;<a href="https://getcomposer.org/" rel="nofollow">https://getcomposer.org/</a></li>
-<li>Instale o mpdf para o relat&oacute;rio:
+<li>A pasta mpdf60 está obsoleta, ignore ou delete. Instale então o mpdf para o relatório:
 <ul>
 <li>Na pasta raiz do projeto execute: $ composer require mpdf/mpdf</li>
 </ul>
