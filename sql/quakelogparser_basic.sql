@@ -19,47 +19,48 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `quakelogparser`
+-- Database: quakelogparser
 --
+CREATE DATABASE quakelogparser;
 
 --
--- Estrutura da tabela `games`
+-- Estrutura da tabela games
 --
 
-DROP TABLE IF EXISTS `games`;
-CREATE TABLE IF NOT EXISTS `games` (
-  `Game_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Game_Name` varchar(50) NOT NULL,
-  `Tot_Kills` int(10) NOT NULL,
-  PRIMARY KEY (`Game_Id`)
+DROP TABLE IF EXISTS quakelogparser.games;
+CREATE TABLE IF NOT EXISTS quakelogparser.games (
+  Game_Id int(11) NOT NULL AUTO_INCREMENT,
+  Game_Name varchar(50) NOT NULL,
+  Tot_Kills int(10) NOT NULL,
+  PRIMARY KEY (Game_Id)
 ) ENGINE=InnoDB AUTO_INCREMENT=2074 DEFAULT CHARSET=latin1;
 
 --
--- Estrutura da tabela `kills`
+-- Estrutura da tabela kills
 --
 
-DROP TABLE IF EXISTS `kills`;
-CREATE TABLE IF NOT EXISTS `kills` (
-  `Kills_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Game_id` int(11) NOT NULL,
-  `Nick_Name` varchar(50) NOT NULL,
-  `Causa_Mortis` varchar(50) NOT NULL,
-  PRIMARY KEY (`Kills_Id`),
-  KEY `Game_id_fk` (`Game_id`) USING BTREE
+DROP TABLE IF EXISTS quakelogparser.kills;
+CREATE TABLE IF NOT EXISTS quakelogparser.kills (
+  Kills_Id int(11) NOT NULL AUTO_INCREMENT,
+  Game_id int(11) NOT NULL,
+  Nick_Name varchar(50) NOT NULL,
+  Causa_Mortis varchar(50) NOT NULL,
+  PRIMARY KEY (Kills_Id),
+  KEY Game_id_fk (Game_id) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=54307 DEFAULT CHARSET=latin1;
 
 --
--- Estrutura da tabela `players`
+-- Estrutura da tabela players
 --
 
-DROP TABLE IF EXISTS `players`;
-CREATE TABLE IF NOT EXISTS `players` (
-  `Player_Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Game_Id` int(11) NOT NULL,
-  `Nick_Name` varchar(50) NOT NULL,
-  `Player_Kills` int(11) NOT NULL,
-  PRIMARY KEY (`Player_Id`),
-  KEY `Game_Id_Fk` (`Game_Id`) USING BTREE
+DROP TABLE IF EXISTS quakelogparser.players;
+CREATE TABLE IF NOT EXISTS quakelogparser.players (
+  Player_Id int(11) NOT NULL AUTO_INCREMENT,
+  Game_Id int(11) NOT NULL,
+  Nick_Name varchar(50) NOT NULL,
+  Player_Kills int(11) NOT NULL,
+  PRIMARY KEY (Player_Id),
+  KEY Game_Id_Fk (Game_Id) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11125 DEFAULT CHARSET=latin1;
 
 
@@ -68,16 +69,16 @@ CREATE TABLE IF NOT EXISTS `players` (
 --
 
 --
--- Limitadores para a tabela `kills`
+-- Limitadores para a tabela kills
 --
-ALTER TABLE `kills`
-  ADD CONSTRAINT `kills_ibfk_1` FOREIGN KEY (`Game_id`) REFERENCES `games` (`Game_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE quakelogparser.kills
+  ADD CONSTRAINT kills_ibfk_1 FOREIGN KEY (Game_id) REFERENCES games (Game_Id) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Limitadores para a tabela `players`
+-- Limitadores para a tabela players
 --
-ALTER TABLE `players`
-  ADD CONSTRAINT `players_ibfk_1` FOREIGN KEY (`Game_Id`) REFERENCES `games` (`Game_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE quakelogparser.players
+  ADD CONSTRAINT players_ibfk_1 FOREIGN KEY (Game_Id) REFERENCES games (Game_Id) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
