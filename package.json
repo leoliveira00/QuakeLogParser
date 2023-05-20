@@ -1,0 +1,12 @@
+{
+  "name": "meu-projeto",
+  "version": "1.0.0",
+  "description": "Descrição do meu projeto",
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "dependencia1": "versao1.0.0",
+    "dependencia2": "versao2.1.3",
+    "dependencia3": "versao3.2.1"
+  }
+}
